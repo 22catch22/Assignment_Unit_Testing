@@ -1,34 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment_Unit_Testing;
+
 
 namespace Assignment_Unit_Testing
 {
-    public class Savings : Account
-    {
-        double _interest;
+public class Savings:Account{
+
+        double _overdraftCharge;
 
         public Savings(double balance) : base(balance)
         {
-            _interest = 5.00;
+            _overdraftCharge = 15;
         }
 
         public override void Deposit(double amount)
         {
-            if(amount >0)
+            if(amount > 0)
             {
-                _balance += amount + _interest;
+                _balance += amount;
             }
         }
 
         public override void Withdraw(double amount)
         {
-            if(amount > 0)
+            if (amount > 0)
             {
-                _balance -= amount;
+                if (_balance - amount < 0)
+                {
+                    _balance -= 15;
+                }
+                else
+                {
+                    _balance -= amount;
+                }
             }
         }
+
+
+   
+   
+   
     }
 }
+
+
+
+
+
+
